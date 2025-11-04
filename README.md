@@ -21,10 +21,10 @@ sudo docker run --gpus all --network=host --ipc=host -v /home/zby/models:/home/m
 ```bash
 sudo docker exec -it vllm-openai /bin/bash
 ```
----
-# Prefix Cache
-## DRAM Store
-### Offline Inference
+## DEMOs
+### Prefix Cache
+#### DRAM Store
+##### Offline Inference
 CUDA_VISIBLE_DEVICES根据实时使用情况调整
 ```bash
 cd /vllm-workspace/unified-cache-management/examples/
@@ -32,7 +32,7 @@ export HF_ENDPOINT=https://hf-mirror.com
 export CUDA_VISIBLE_DEVICES=1
 python3 offline_inference.py
 ```
-### Online Inference
+##### Online Inference
 ```bash
 cd /vllm-workspace/unified-cache-management/examples/
 export PYTHONHASHSEED=123456
@@ -66,8 +66,8 @@ curl http://localhost:7800/v1/completions  -H "Content-Type: application/json" -
         "temperature": 0
     }'
 ```
-## PD Disaggregation
-### 1p1d
+#### PD Disaggregation
+##### 1p1d
 运行prefill
 ```bash
 export PYTHONHASHSEED=123456
@@ -126,6 +126,10 @@ export HF_ENDPOINT=https://hf-mirror.com
 clear
 python3 benchmark_serving.py --backend vllm --dataset-name random --random-input-len 4096 --random-output-len 1000 --num-prompts 10 --ignore-eos --model Qwen/Qwen2.5-1.5B-Instruct --tokenizer Qwen/Qwen2.5-1.5B-Instruct --host localhost --port 7802 --endpoint /v1/completions --request-rate 1
 ```
+---
+
+# Unified Cache Management
+Docs: [https://hackmd.io/@peter-john/B1E9j-PCle](https://hackmd.io/@peter-john/B1E9j-PCle)
 
 
 
@@ -139,6 +143,26 @@ python3 benchmark_serving.py --backend vllm --dataset-name random --random-input
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Reference
+UCM code link: [https://github.com/ModelEngine-Group/unified-cache-management.git](https://github.com/ModelEngine-Group/unified-cache-management.git)
+UCM documentation link: [https://unified-cache-management.readthedocs.io/en/latest/](https://ucm.readthedocs.io/en/latest/index.html)
 
 
 
